@@ -21,8 +21,9 @@ def create_gif(files, durations, outfile):
 
 	images = []
 	for file in files:
-		if (vrb): print(file)
-		images.append(imageio.imread(file))
+		if (file.split('/')[-1][0] != '.'): # Ensure that file is not a hidden file (thanks Soheil!)
+			if (vrb>1): print(file)
+			images.append(imageio.imread(file))
 
 	imageio.mimsave(outfile, images, duration=durations)
 
